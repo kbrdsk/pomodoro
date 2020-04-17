@@ -1,29 +1,65 @@
 let timer = 2;
 let isBreak = true;
-let pause = true;
+let isPaused = true;
+
+let content = document.getElementById('container');
+let viewTimer = document.getElementById('timer');
+
+let pauseHandler = document.getElementById('pause');
+pauseHandler.addEventListener('click', pause);
+
+let playHandller = document.getElementById('play');
+playHandller.addEventListener('click', play);
+
+let resetHandler = document.getElementById('reset');
+resetHandler.addEventListener('click', reset);
+
+let stopHandler = document.getElementById('stop');
+stopHandler.addEventListener('click', stop);
+
 
 let sessionTimeHandler = document.getElementById('session');
+sessionTimeHandler.addEventListener('change', setTime);
 
 let breakTimeHandler = document.getElementById('break');
+breakTimeHandler.addEventListener('change', setTime);
+
 
 setInterval(update, 1000);
 
 function update(){
-    if(!pause) timer--;
+    if(!isPaused) timer--;
     if(timer === 0) switchTimer();
     viewTimer.innerText = (displayTimer(timer));
 }
 
+function pause(){
+    isPaused = true;
+}
+
 function reset(){
-    breakTime = 5;
-    sessionTime = 25;
+    breakTimeHandler.value = '5';
+    sessionTimeHandler.value = '25';
     stop();
 }
 
-function stop(){
+function play(){
+    isPaused = false;
+    breakTimeHandler.disabled =
+    sessionTimeHandler.disabled = false;
+}
+
+function setTime(){
     timer = (isBreak)? +breakTimeHandler.value * 60:
                        +sessionTimeHandler.value * 60;
-    pause = true;
+    update();
+}
+
+function stop(){
+    isPaused = true;
+    setTime();
+    breakTimeHandler.disabled =
+    sessionTimeHandler.disabled = false;
     update();
 }
 
@@ -45,26 +81,6 @@ function alertSwitch(){
     if(isBreak) alert('Back to work!');
     if(!isBreak) alert('Break time!');
 }
-let content = document.getElementById('container');
-let viewTimer = document.createElement('p');
-content.appendChild(viewTimer);
-
-
-pauseHandler = document.getElementById('pause');
-pauseHandler.addEventListener('click', function(){
-    pause = true;
-})
-
-playHandller = document.getElementById('play');
-playHandller.addEventListener('click', function(){
-  pause= false;  
-})
-
-resetHandler = document.getElementById('reset');
-resetHandler.addEventListener('click', reset);
-
-stopHandler = document.getElementById('stop');
-stopHandler.addEventListener('click', stop);
 
 
 
