@@ -7,7 +7,7 @@ setInterval(update, 1000);
 function update(){
     if(!pause) timer--;
     if(timer === 0) switchTimer();
-    console.log(displayTimer(timer));
+    viewTimer.innerText = (displayTimer(timer));
 }
 
 function switchTimer(){
@@ -28,3 +28,12 @@ function alertSwitch(){
     if(isBreak) console.log('Back to work!');
     if(!isBreak) console.log('Break time!');
 }
+let content = document.getElementById('container');
+let viewTimer = document.createElement('p');
+content.appendChild(viewTimer);
+
+
+pauseHandler = document.getElementById('pause');
+pauseHandler.addEventListener('click', function(){
+    pause = true;
+})
