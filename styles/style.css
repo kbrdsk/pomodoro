@@ -1,0 +1,85 @@
+#container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #cccccc;
+}
+
+#timer-content {
+	padding: 30px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr 3fr 1fr;
+	grid-template-areas: 'session-input session-input break-input break-input'
+		'timer         timer         timer       timer      ' 'play          pause         reset       stop       ';
+}
+
+#play {
+	grid-area: play;
+}
+
+#reset {
+	grid-area: reset;
+}
+
+#stop {
+	grid-area: stop;
+}
+
+#pause {
+	grid-area: pause;
+}
+
+button {
+	border: none;
+	margin: 5px;
+	background-color: #555;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 15px;
+}
+
+#timer {
+	grid-area: timer;
+	font-size: 80px;
+	text-align: center;
+	align-self: center;
+	justify-self: center;
+	padding: 20px;
+}
+
+#session {
+	width: 70%;
+	margin: 5px;
+	background-color: #555;
+	border: 3px solid #444;
+	color: white;
+	text-align: center;
+}
+
+#break {
+	width: 70%;
+	margin: 5px;
+	background-color: #555;
+	border: 3px solid #444;
+	color: white;
+	text-align: center;
+}
+
+.session-container {
+	grid-area: session-input;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.break-container {
+	grid-area: break-input;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
