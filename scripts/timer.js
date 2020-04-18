@@ -49,7 +49,11 @@ function play() {
 }
 
 function setTime() {
-	timer = isBreak ? +breakTimeHandler.value * 60 : +sessionTimeHandler.value * 60;
+	breakTimeHandler.value = Math.min(999, Math.max(1, Math.ceil(+breakTimeHandler.value)));
+	sessionTimeHandler.value = Math.min(999, Math.max(1, Math.ceil(+sessionTimeHandler.value))); 
+	timer = isBreak ? +breakTimeHandler.value * 60 : 
+	                  +sessionTimeHandler.value * 60;
+	update();
 }
 
 function stop() {
