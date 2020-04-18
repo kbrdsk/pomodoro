@@ -1,6 +1,7 @@
-let timer = 2;
-let isBreak = true;
+let timer = 25 * 60;
+let isBreak = false;
 let isPaused = true;
+let timeColor = 'session-time';
 
 let viewTimer = document.getElementById('timer');
 
@@ -42,7 +43,8 @@ function reset() {
 
 function play() {
 	isPaused = false;
-	breakTimeHandler.disabled = sessionTimeHandler.disabled = false;
+	breakTimeHandler.disabled = sessionTimeHandler.disabled = true;
+	viewTimer.classList.add(timeColor);
 }
 
 function setTime() {
@@ -51,14 +53,21 @@ function setTime() {
 
 function stop() {
 	isPaused = true;
+	viewTimer.classList.remove(timeColor);
 	setTime();
 	breakTimeHandler.disabled = sessionTimeHandler.disabled = false;
 	update();
 }
 
 function switchTimer() {
-	if (!isBreak) timer = +breakTimeHandler.value * 60;
-	else timer = +sessionTimeHandler.value * 60;
+	viewTimer.classList.remove(timeColor);
+	if (!isBreak) {
+		timer = +breakTimeHandler.value * 60;
+		timeColor = 'break-time';
+	} else {
+		timer = +sessionTimeHandler.value * 60;
+		timeColor = 'session-time';
+	}
 	alertSwitch();
 	isBreak = !isBreak;
 }

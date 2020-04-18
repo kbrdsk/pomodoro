@@ -1,9 +1,30 @@
+body,
+html {
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.main {
+	background-image: url("../images/image.jpg");
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#timer-title {
+	position: absolute;
+	top: 4%;
+	left: 4%;
+	font-size: 37px;
+}
+
 #container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: #cccccc;
+	background-color: rgba(204, 194, 194, 0.9);
 }
 
 #timer-content {
@@ -13,6 +34,14 @@
 	grid-template-rows: 1fr 3fr 1fr;
 	grid-template-areas: 'session-input session-input break-input break-input'
 		'timer         timer         timer       timer      ' 'play          pause         reset       stop       ';
+}
+
+.session-time {
+	color: rgb(40, 128, 40);
+}
+
+.break-time {
+	color: rgb(93, 101, 209);
 }
 
 #play {
@@ -82,4 +111,17 @@ button {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+/*Remove the arrow pointers from input elements*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
 }
